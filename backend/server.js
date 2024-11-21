@@ -12,7 +12,7 @@ app.get("/", (req, res) => {
 });
 
 // Start the Server
-const PORT = 5000; // Change if needed
+const PORT = 5001; // Change if needed
 app.listen(PORT, () => {
   console.log(`Backend running on http://localhost:${PORT}`);
 });
