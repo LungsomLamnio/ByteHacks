@@ -1,21 +1,15 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import HomePage from "./pages/HomePage";
 
 const App = () => {
-  const [message, setMessage] = useState("");
-
-  useEffect(() => {
-    // Fetch data from the backend
-    fetch("http://localhost:3000/")
-      .then((response) => response.text()) // Backend sends plain text, so use .text()
-      .then((data) => setMessage(data)) // Set the received text to state
-      .catch((error) => console.error("Error fetching data:", error));
-  }, []);
-
   return (
-    <div>
-      <h1>Frontend-Backend Integration</h1>
-      <p>Response from backend: {message}</p>
-    </div>
+    <Router>
+      <Routes>
+        {/* Define route for "/" */}
+        <Route path="/" element={<HomePage />} />
+      </Routes>
+    </Router>
   );
 };
 
