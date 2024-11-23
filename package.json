@@ -1,5 +1,11 @@
 {
   "devDependencies": {
-    "@ljharb/tsconfig": "^0.2.0"
+    "@ljharb/tsconfig": "^0.2.0",
+    "autoprefixer": "^10.4.20",
+    "postcss": "^8.4.49",
+    "tailwindcss": "^3.4.15"
+  },
+  "dependencies": {
+    "vite": "^5.4.11"
   }
 }
