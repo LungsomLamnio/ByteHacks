@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+    <link rel="stylesheet" href="Seller_login.css">
+    <title>Seller Login</title>
+</head>
+
+<body>
+
+    <div class="container" id="container">
+        <!-- Seller Login Form -->
+        <div class="form-container sign-in">
+            <form>
+                <h1>Seller Login</h1>
+                <div class="social-icons">
+                    <a href="#" class="icon"><i class="fa-brands fa-google-plus-g"></i></a>
+                    <a href="#" class="icon"><i class="fa-brands fa-facebook-f"></i></a>
+                </div>
+                <span>or use your e-mail and password</span>
+                <input type="email" placeholder="E-mail" id="sellerEmail" required>
+                <input type="password" placeholder="Password" id="sellerPassword" required>
+                <a href="#">Forgot Your Password?</a>
+                <button type="submit" id="loginButton">Sign In</button>
+            </form>
+        </div>
+
+        <!-- Seller Registration Form (if needed) -->
+        <div class="form-container sign-up">
+            <form>
+                <h1>Seller Registration</h1>
+                <input type="text" placeholder="Business Name" id="businessName" required>
+                <input type="text" placeholder="Seller Name" id="sellerName" required>
+                <input type="email" placeholder="E-mail" id="registerEmail" required>
+                <input type="password" placeholder="Password" id="registerPassword" required>
+                <input type="text" placeholder="Phone Number" id="phoneNumber" required>
+                <input type="text" placeholder="Store Location" id="storeLocation" required>
+                <button type="submit" id="registerButton">Register</button>
+            </form>
+        </div>
+
+        <!-- Toggle Button Panel for Login and Registration -->
+        <div class="toggle-container">
+            <div class="toggle">
+                <div class="toggle-panel toggle-left">
+                    <h1>Welcome Back, Seller!</h1>
+                    <p>Enter your personal details to access your seller dashboard</p>
+                    <button id="login">Sign In</button>
+                </div>
+                <div class="toggle-panel toggle-right">
+                    <h1>New Seller? Register Now</h1>
+                    <p>Provide the required details to create a seller account</p>
+                    <button id="register">Register</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="Seller_login.js"></script>
+</body>
+
+</html>
