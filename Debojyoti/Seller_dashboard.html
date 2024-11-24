@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+    <link rel="stylesheet" href="Seller_dashboard.css">
+    <title>Seller Dashboard</title>
+</head>
+
+<body>
+    <header>
+        <h1>Seller Dashboard</h1>
+        <p>Streamline Your Product Management Experience</p>
+    </header>
+
+    <!-- Add Product Section -->
+    <section class="product-upload">
+        <h2>Add Product</h2>
+        <form id="productForm">
+            <div class="input-group">
+                <input type="text" placeholder="Product Name" id="productName" required>
+                <input type="number" placeholder="Price (₹)" id="productPrice" required>
+            </div>
+            <textarea placeholder="Product Description" id="productDescription" rows="3" required></textarea>
+            <div class="input-group">
+                <input type="file" id="productImages" accept="image/*" multiple required>
+                <button type="button" id="addProductButton">Add Product</button>
+            </div>
+        </form>
+    </section>
+
+    <!-- Your Products Section -->
+    <section class="product-list hidden" id="productSection">
+        <h2>Your Products</h2>
+        <ul id="productList">
+            <!-- Dynamically populated list of products -->
+        </ul>
+        <div class="product-actions">
+            <button id="publishButton" class="publish hidden">Publish All Products</button>
+        </div>
+    </section>
+
+    <script src="Seller_dashboard.js"></script>
+</body>
+
+</html>
