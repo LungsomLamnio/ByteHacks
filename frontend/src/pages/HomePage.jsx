@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 
 const HomePage = () => {
   const products = [
@@ -32,12 +32,32 @@ const HomePage = () => {
     },
   ];
 
+  const [searchTerm, setSearchTerm] = useState("");
+
+  const filteredProducts = products.filter((product) =>
+    product.name.toLowerCase().includes(searchTerm.toLowerCase())
+  );
+
   return (
     <div className="font-sans bg-gray-100 min-h-screen">
       {/* Header */}
       <header className="bg-green-700 text-white p-4">
         <div className="flex justify-between items-center w-full px-6 xl:px-12">
+          {/* Logo */}
           <h1 className="text-xl md:text-2xl font-bold">Shopcart</h1>
+
+          {/* Search Box */}
+          <div className="flex-grow mx-4">
+            <input
+              type="text"
+              placeholder="Search for products, brands and more"
+              value={searchTerm}
+              onChange={(e) => setSearchTerm(e.target.value)}
+              className="w-full p-3 rounded-md text-gray-700 focus:outline-none focus:ring focus:ring-green-500 bg-white"
+            />
+          </div>
+
+          {/* Navigation Links */}
           <div className="space-x-2 md:space-x-4 text-sm md:text-base">
             <a href="/" className="hover:underline text-white">
               Categories
@@ -55,7 +75,6 @@ const HomePage = () => {
       {/* Hero Section */}
       <div className="bg-green-50 w-full py-12">
         <div className="container mx-auto flex flex-col md:flex-row items-center justify-between gap-8 px-6 lg:px-12">
-          {/* Text Section */}
           <div className="md:w-1/2 space-y-4 text-center md:text-left">
             <h2 className="text-4xl md:text-5xl font-bold text-green-800 leading-tight">
               Grab Upto 50% Off On Selected Potteries
@@ -68,8 +87,6 @@ const HomePage = () => {
               Buy Now
             </button>
           </div>
-
-          {/* Image Section */}
           <div className="md:w-1/2">
             <img
               src="./public/LA_Hero.png"
@@ -107,7 +124,7 @@ const HomePage = () => {
           Products For You!
         </h2>
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-8">
-          {products.map((product) => (
+          {filteredProducts.map((product) => (
             <div
               key={product.id}
               className="bg-white p-6 rounded-lg shadow-md hover:shadow-lg transition-shadow"
