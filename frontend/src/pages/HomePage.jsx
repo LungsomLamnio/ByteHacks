@@ -61,7 +61,7 @@ const HomePage = () => {
           {/* Text Section */}
           <div className="md:w-1/2 space-y-4 text-center md:text-left">
             <h2 className="text-4xl md:text-5xl font-bold text-green-800 leading-tight">
-              Grab Upto 50% Off On Selected Headphones
+              Grab Upto 50% Off On Selected Potteries
             </h2>
             <p className="text-gray-700 text-lg">
               Discover the best deals on high-quality headphones and elevate
