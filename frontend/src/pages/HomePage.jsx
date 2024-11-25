@@ -43,13 +43,10 @@ const HomePage = () => {
               Categories
             </a>
             <a href="/" className="hover:underline text-white">
-              Deals
+              My Profile
             </a>
             <a href="/" className="hover:underline text-white">
-              What's New
-            </a>
-            <a href="/" className="hover:underline text-white">
-              Delivery
+              Become a seller
             </a>
           </div>
         </div>
