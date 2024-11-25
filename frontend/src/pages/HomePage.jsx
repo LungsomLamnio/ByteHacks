@@ -76,13 +76,24 @@ const HomePage = () => {
           <h1 className="text-xl md:text-2xl font-bold">EthniCrafts</h1>
 
           {/* Search Box */}
-          <div className="flex-grow mx-4">
+          <div className="relative flex-grow mx-4">
+            {/* Magnifying Glass Icon */}
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              className="absolute left-3 top-1/2 transform -translate-y-1/2 w-5 h-5 text-gray-400"
+              fill="currentColor"
+              viewBox="0 0 24 24"
+            >
+              <path d="M10 2a8 8 0 015.29 13.29l4.11 4.11a1 1 0 01-1.42 1.42l-4.11-4.11A8 8 0 1110 2zm0 2a6 6 0 100 12 6 6 0 000-12z" />
+            </svg>
+
+            {/* Input Field */}
             <input
               type="text"
               placeholder="Search for products, brands and more"
               value={searchTerm}
               onChange={(e) => setSearchTerm(e.target.value)}
-              className="w-full p-3 rounded-md text-gray-700 focus:outline-none focus:ring focus:ring-green-500 bg-white"
+              className="w-full pl-10 p-3 rounded-md text-gray-700 focus:outline-none focus:ring focus:ring-green-500 bg-white"
             />
           </div>
 
@@ -163,13 +174,13 @@ const HomePage = () => {
             © {new Date().getFullYear()} EthniCrafts. All rights reserved.
           </p>
           <div className="flex space-x-4 mt-4 md:mt-0">
-            <a href="#" className="hover:underline">
+            <a href="#" className="hover:underline text-white">
               Privacy Policy
             </a>
-            <a href="#" className="hover:underline">
+            <a href="#" className="hover:underline text-white">
               Terms of Service
             </a>
-            <a href="#" className="hover:underline">
+            <a href="#" className="hover:underline text-white">
               Contact Us
             </a>
           </div>
