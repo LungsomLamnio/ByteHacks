@@ -67,12 +67,12 @@ const HomePage = () => {
   );
 
   return (
-    <div className="font-sans bg-gray-100 min-h-screen">
+    <div className="font-sans bg-gray-100 min-h-screen flex flex-col">
       {/* Header */}
       <header className="bg-green-700 text-white p-4">
         <div className="flex justify-between items-center w-full px-6 xl:px-12">
           {/* Logo */}
-          <h1 className="text-xl md:text-2xl font-bold">Shopcart</h1>
+          <h1 className="text-xl md:text-2xl font-bold">EthniCrafts</h1>
 
           {/* Search Box */}
           <div className="flex-grow mx-4">
@@ -126,8 +126,8 @@ const HomePage = () => {
       </div>
 
       {/* Product Section */}
-      <div className="py-8 px-6 xl:px-12 w-full bg-green-50">
-        <h2 className="text-xl md:text-3xl font-bold mb-6 text-center md:text-left text-black">
+      <div className="py-8 px-6 xl:px-12 w-full bg-green-50 flex-grow">
+        <h2 className="text-xl md:text-3xl font-bold mb-6 text-center md:text-left text-green-800">
           Products For You!
         </h2>
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-8">
@@ -153,6 +153,26 @@ const HomePage = () => {
           ))}
         </div>
       </div>
+
+      {/* Footer */}
+      <footer className="bg-gray-400 text-white py-6 mt-8">
+        <div className="container mx-auto px-6 xl:px-12 flex flex-col md:flex-row justify-between items-center">
+          <p className="text-sm">
+            © {new Date().getFullYear()} Shopcart. All rights reserved.
+          </p>
+          <div className="flex space-x-4 mt-4 md:mt-0">
+            <a href="#" className="hover:underline">
+              Privacy Policy
+            </a>
+            <a href="#" className="hover:underline">
+              Terms of Service
+            </a>
+            <a href="#" className="hover:underline">
+              Contact Us
+            </a>
+          </div>
+        </div>
+      </footer>
     </div>
   );
 };
