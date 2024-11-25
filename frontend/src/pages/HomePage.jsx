@@ -30,6 +30,34 @@ const HomePage = () => {
       price: "$120.00",
       image: "./public/PAVA.jpg", // Replace with actual product image URL
     },
+    {
+      id: 5,
+      name: "Artisanal Jewelry",
+      description: "Handcrafted Silver Necklace",
+      price: "$120.00",
+      image: "./public/PAVA.jpg", // Replace with actual product image URL
+    },
+    {
+      id: 6,
+      name: "Artisanal Jewelry",
+      description: "Handcrafted Silver Necklace",
+      price: "$120.00",
+      image: "./public/PAVA.jpg", // Replace with actual product image URL
+    },
+    {
+      id: 7,
+      name: "Artisanal Jewelry",
+      description: "Handcrafted Silver Necklace",
+      price: "$120.00",
+      image: "./public/PAVA.jpg", // Replace with actual product image URL
+    },
+    {
+      id: 8,
+      name: "Artisanal Jewelry",
+      description: "Handcrafted Silver Necklace",
+      price: "$120.00",
+      image: "./public/PAVA.jpg", // Replace with actual product image URL
+    },
   ];
 
   const [searchTerm, setSearchTerm] = useState("");
@@ -80,8 +108,8 @@ const HomePage = () => {
               Grab Upto 50% Off On Selected Potteries
             </h2>
             <p className="text-gray-700 text-lg">
-              Discover the best deals on high-quality headphones and elevate
-              your listening experience.
+              Discover unique, handcrafted products by local artisans and
+              support their creative journey.
             </p>
             <button className="bg-green-700 text-white py-3 px-8 rounded-lg hover:bg-green-800 text-lg">
               Buy Now
@@ -97,30 +125,9 @@ const HomePage = () => {
         </div>
       </div>
 
-      {/* Filters Section */}
-      <div className="bg-gray-50 py-4 bg-green-50">
-        <div className="flex flex-wrap gap-2 justify-center px-6 xl:px-12 w-full">
-          <button className="bg-green-550 text-white px-4 py-3 rounded-md text-sm md:text-base">
-            Handmade Products
-          </button>
-          <button className="bg-green-550 text-white px-4 py-3 rounded-md text-sm md:text-base">
-            Pottery
-          </button>
-          <button className="bg-green-550 text-white px-4 py-3 rounded-md text-sm md:text-base">
-            Jewelry
-          </button>
-          <button className="bg-green-550 text-white px-4 py-3 rounded-md text-sm md:text-base">
-            Art
-          </button>
-          <button className="bg-green-550 text-white px-4 py-3 rounded-md text-sm md:text-base">
-            All Filters
-          </button>
-        </div>
-      </div>
-
       {/* Product Section */}
       <div className="py-8 px-6 xl:px-12 w-full bg-green-50">
-        <h2 className="text-xl md:text-3xl font-bold mb-6 text-center md:text-left">
+        <h2 className="text-xl md:text-3xl font-bold mb-6 text-center md:text-left text-black">
           Products For You!
         </h2>
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-8">
