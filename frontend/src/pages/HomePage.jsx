@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { Link } from "react-router-dom";
 
 const HomePage = () => {
   const products = [
@@ -7,56 +8,56 @@ const HomePage = () => {
       name: "Wireless Earbuds, IPX8",
       description: "Organic Cotton, Earcups Certified",
       price: "$89.00",
-      image: "./public/HWS.avif", // Replace with actual product image URL
+      image: "/HWS.avif", // Correct public folder path
     },
     {
       id: 2,
       name: "Handmade Pottery",
       description: "Traditional Clay Pots, Handcrafted",
       price: "$59.00",
-      image: "./public/HMHD.jpg", // Replace with actual product image URL
+      image: "/HMHD.jpg",
     },
     {
       id: 3,
       name: "Woven Basket",
       description: "Eco-friendly Handmade Wicker Basket",
       price: "$39.00",
-      image: "./public/HWB.jpeg", // Replace with actual product image URL
+      image: "/HWB.jpeg",
     },
     {
       id: 4,
       name: "Artisanal Jewelry",
       description: "Handcrafted Silver Necklace",
       price: "$120.00",
-      image: "./public/PAVA.jpg", // Replace with actual product image URL
+      image: "/PAVA.jpg",
     },
     {
       id: 5,
       name: "Artisanal Jewelry",
       description: "Handcrafted Silver Necklace",
       price: "$120.00",
-      image: "./public/PAVA.jpg", // Replace with actual product image URL
+      image: "/PAVA.jpg",
     },
     {
       id: 6,
       name: "Artisanal Jewelry",
       description: "Handcrafted Silver Necklace",
       price: "$120.00",
-      image: "./public/PAVA.jpg", // Replace with actual product image URL
+      image: "/PAVA.jpg",
     },
     {
       id: 7,
       name: "Artisanal Jewelry",
       description: "Handcrafted Silver Necklace",
       price: "$120.00",
-      image: "./public/PAVA.jpg", // Replace with actual product image URL
+      image: "/PAVA.jpg",
     },
     {
       id: 8,
       name: "Artisanal Jewelry",
       description: "Handcrafted Silver Necklace",
       price: "$120.00",
-      image: "./public/PAVA.jpg", // Replace with actual product image URL
+      image: "/PAVA.jpg",
     },
   ];
 
@@ -93,9 +94,10 @@ const HomePage = () => {
             <a href="/" className="hover:underline text-white">
               My Profile
             </a>
-            <a href="/" className="hover:underline text-white">
+            {/* Link to Seller Dashboard */}
+            <Link to="/seller-dashboard" className="hover:underline text-white">
               Become a seller
-            </a>
+            </Link>
           </div>
         </div>
       </header>
@@ -117,7 +119,7 @@ const HomePage = () => {
           </div>
           <div className="md:w-1/2">
             <img
-              src="./public/LA_Hero.png"
+              src="/LA_Hero.png"
               alt="Headphone Promo"
               className="w-full h-auto rounded-lg shadow-md object-cover"
             />
@@ -155,10 +157,10 @@ const HomePage = () => {
       </div>
 
       {/* Footer */}
-      <footer className="bg-gray-400 text-white py-6 mt-8">
+      <footer className="bg-gray-800 text-white py-6">
         <div className="container mx-auto px-6 xl:px-12 flex flex-col md:flex-row justify-between items-center">
           <p className="text-sm">
-            © {new Date().getFullYear()} Shopcart. All rights reserved.
+            © {new Date().getFullYear()} EthniCrafts. All rights reserved.
           </p>
           <div className="flex space-x-4 mt-4 md:mt-0">
             <a href="#" className="hover:underline">
