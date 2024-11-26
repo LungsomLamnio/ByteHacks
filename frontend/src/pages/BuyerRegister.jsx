@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import axios from "axios"; // Import Axios for making HTTP requests
+import { useNavigate } from "react-router-dom"; // Import useNavigate for programmatic navigation
 
 const BuyerRegister = () => {
   const [formData, setFormData] = useState({
@@ -8,6 +9,8 @@ const BuyerRegister = () => {
     password: "",
     confirmPassword: "",
   });
+  const [loading, setLoading] = useState(false); // To manage loading state
+  const navigate = useNavigate(); // Initialize useNavigate hook for navigation
 
   const handleChange = (e) => {
     setFormData({
@@ -24,6 +27,8 @@ const BuyerRegister = () => {
       return;
     }
 
+    setLoading(true); // Show loading state
+
     try {
       // Send POST request to the server to register the buyer
       const response = await axios.post(
@@ -36,9 +41,14 @@ const BuyerRegister = () => {
         }
       );
 
-      alert(response.data.message); // Show success message
+      // Redirect to the success page after successful registration
+      navigate("/registeration-success", {
+        state: { message: response.data.message }, // Optional: Pass message to the success page
+      });
     } catch (error) {
-      alert(error.response.data.message); // Show error message
+      alert(error.response?.data?.message || "Registration failed!"); // Show error message
+    } finally {
+      setLoading(false); // Hide loading state after request completes
     }
   };
 
@@ -128,8 +138,9 @@ const BuyerRegister = () => {
           <button
             type="submit"
             className="w-full bg-blue-600 text-white py-2 rounded-lg hover:bg-blue-700 transition-all"
+            disabled={loading} // Disable the button while loading
           >
-            Register
+            {loading ? "Registering..." : "Register"}
           </button>
         </form>
         <div className="text-center mt-3">

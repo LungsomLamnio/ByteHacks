@@ -8,6 +8,7 @@ import BuyerLogin from "./pages/BuyerLogin";
 import SellerLogin from "./pages/SellerLogin";
 import SellerRegister from "./pages/SellerRegister";
 import BuyerRegister from "./pages/BuyerRegister";
+import RegisterationSuccess from "./pages/RegisterationSuccess";
 
 function App() {
   return (
@@ -35,6 +36,12 @@ function App() {
       </Routes>
       <Routes>
         <Route path="/buyer-register" element={<BuyerRegister />} />
+      </Routes>
+      <Routes>
+        <Route
+          path="/registeration-success"
+          element={<RegisterationSuccess />}
+        />
       </Routes>
     </Router>
   );

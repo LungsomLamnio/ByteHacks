@@ -3,35 +3,31 @@ const cors = require("cors");
 const mongoose = require("mongoose");
 require("dotenv").config(); // Load environment variables from .env file
 const productRoutes = require("./routes/productRoutes");
-//const userRoutes = require("./routes/userRoutes"); // Import user routes (buyer/seller registration)
 const buyerRoutes = require("./routes/buyerRoutes"); // Import buyer routes
 
 const app = express();
 
 // Middleware
 app.use(cors());
-app.use(express.json());
+app.use(express.json()); // Parse incoming JSON requests
 
 // Routes
 app.use("/api/products", productRoutes); // Product-related routes
-// app.use("/api/users", userRoutes); // User-related routes
 app.use("/api/users", buyerRoutes); // User-related routes (Registration)
 
 // MongoDB Connection
 const connectDB = async () => {
   try {
-    const uri = process.env.MONGO_URI; // Use the value from .env file
+    const uri = process.env.MONGO_URI;
     if (!uri) {
       console.error("MONGO_URI is not defined in .env file");
-      process.exit(1); // Exit the process if MONGO_URI is not found
+      process.exit(1);
     }
-
-    // No need for useNewUrlParser or useUnifiedTopology anymore
     await mongoose.connect(uri);
     console.log("Connected to MongoDB");
   } catch (error) {
     console.error("Failed to connect to MongoDB", error);
-    process.exit(1); // Exit process with failure
+    process.exit(1);
   }
 };
 
