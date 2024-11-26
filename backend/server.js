@@ -5,6 +5,7 @@ require("dotenv").config(); // Load environment variables from .env file
 const productRoutes = require("./routes/productRoutes");
 const buyerRoutes = require("./routes/buyerRoutes"); // Import buyer routes
 const authRoutes = require("./routes/auth"); // Import the auth routes
+const sellerRoutes = require("./routes/auth"); // Import seller routes from auth.js
 
 const app = express();
 
@@ -16,6 +17,7 @@ app.use(express.json()); // Parse incoming JSON requests
 app.use("/api/products", productRoutes); // Product-related routes
 app.use("/api/users", buyerRoutes); // User-related routes (Registration)
 app.use("/api/users", authRoutes); // Use auth.js for user-related routes (login/registration)
+app.use("/api/users", sellerRoutes); // Use seller routes for registration
 
 // MongoDB Connection
 const connectDB = async () => {

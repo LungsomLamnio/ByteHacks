@@ -1,6 +1,7 @@
 const express = require("express");
 const bcrypt = require("bcryptjs");
 const Buyer = require("../models/buyer"); // Import the Buyer model
+const Seller = require("../models/seller");
 const router = express.Router();
 
 // Buyer Registration
@@ -60,6 +61,41 @@ router.post("/login/buyer", async (req, res) => {
   } catch (error) {
     console.error(error);
     res.status(500).json({ message: "Error logging in", error });
+  }
+});
+
+// Seller Registration
+router.post("/register/seller", async (req, res) => {
+  const { username, email, password, storeName, gstNumber, businessAddress } =
+    req.body;
+
+  try {
+    // Check if the email already exists
+    const existingSeller = await Seller.findOne({ email });
+    if (existingSeller) {
+      return res.status(400).json({ message: "Email already registered" });
+    }
+
+    // Hash the password
+    const hashedPassword = await bcrypt.hash(password, 10);
+
+    // Create a new seller
+    const newSeller = new Seller({
+      username,
+      email,
+      password: hashedPassword,
+      storeName,
+      gstNumber,
+      businessAddress, // Assuming businessAddress is an object with fields like street, city, etc.
+    });
+
+    await newSeller.save();
+    res.status(201).json({ message: "Seller registered successfully" });
+  } catch (error) {
+    console.error("Error registering seller:", error);
+    res
+      .status(500)
+      .json({ message: "Error registering seller", error: error.message });
   }
 });
 
