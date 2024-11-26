@@ -1,12 +1,14 @@
 const express = require("express");
 const cors = require("cors");
 const mongoose = require("mongoose"); // Import Mongoose
+const productRoutes = require("./routes/productRoutes");
 
 const app = express();
 
 // Middleware
 app.use(cors());
 app.use(express.json());
+app.use("/api", productRoutes);
 
 // MongoDB Connection
 const connectDB = async () => {
