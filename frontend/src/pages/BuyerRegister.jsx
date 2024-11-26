@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import axios from "axios"; // Import Axios for making HTTP requests
 
 const BuyerRegister = () => {
   const [formData, setFormData] = useState({
@@ -15,13 +16,29 @@ const BuyerRegister = () => {
     });
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
+
     if (formData.password !== formData.confirmPassword) {
       alert("Passwords do not match!");
-    } else {
-      alert(`Registered successfully! Username: ${formData.username}`);
-      // Add your API logic here for registration
+      return;
+    }
+
+    try {
+      // Send POST request to the server to register the buyer
+      const response = await axios.post(
+        "http://localhost:5001/api/users/register",
+        {
+          username: formData.username,
+          email: formData.email,
+          password: formData.password,
+          confirmPassword: formData.confirmPassword,
+        }
+      );
+
+      alert(response.data.message); // Show success message
+    } catch (error) {
+      alert(error.response.data.message); // Show error message
     }
   };
 
