@@ -5,59 +5,67 @@ const HomePage = () => {
   const products = [
     {
       id: 1,
-      name: "Wireless Earbuds, IPX8",
-      description: "Organic Cotton, Earcups Certified",
-      price: "$89.00",
-      image: "/HWS.avif", // Correct public folder path
+      name: "Naga Handwoven Table Mat and Runner",
+      description:
+        "Handwoven table runners and mats by Nagaland's tribal women, reflecting rich heritage.",
+      price: "₹1,800.00", // Converted to INR
+      image: "/NagaHandwovenTableMat.jpeg", // Correct public folder path
     },
     {
       id: 2,
-      name: "Handmade Pottery",
-      description: "Traditional Clay Pots, Handcrafted",
-      price: "$59.00",
-      image: "/HMHD.jpg",
+      name: "White Mulberry Silk Traditional Mekhla Chador",
+      description:
+        "Handloom Assamese Mekhla Chador: a traditional two-piece attire of skirt and shawl.",
+      price: "₹22,000.00", // Converted to INR
+      image: "/WhiteMulberrySilkTraditionalMekhlaChador.jpeg",
     },
     {
       id: 3,
-      name: "Woven Basket",
-      description: "Eco-friendly Handmade Wicker Basket",
-      price: "$39.00",
-      image: "/HWB.jpeg",
+      name: "Lek Vaikong - Traditional Karbi Necklace",
+      description:
+        "Lek Vaikong: a traditional Karbi necklace symbolizing their vibrant culture and pride.",
+      price: "₹449.00", // Converted to INR
+      image: "/TraditionalKarbiNecklace.jpeg",
     },
     {
       id: 4,
-      name: "Artisanal Jewelry",
-      description: "Handcrafted Silver Necklace",
-      price: "$120.00",
-      image: "/PAVA.jpg",
+      name: "Dimasa - Risa Rimai - Muffler",
+      description:
+        "Handwoven Dimasa muffler featuring vibrant patterns and rich tribal heritage.",
+      price: "₹1,599.00", // Converted to INR
+      image: "/DimasaMuffler.jpeg",
     },
     {
       id: 5,
-      name: "Artisanal Jewelry",
-      description: "Handcrafted Silver Necklace",
-      price: "$120.00",
-      image: "/PAVA.jpg",
+      name: "Handcrafted Warli Art Terracotta Pot with a lid",
+      description:
+        "Terracotta pot with lid, featuring intricate Warli art that celebrates tribal culture.",
+      price: "₹999.00", // Converted to INR
+      image: "/HandcraftedPot.jpeg",
     },
     {
       id: 6,
-      name: "Artisanal Jewelry",
-      description: "Handcrafted Silver Necklace",
-      price: "$120.00",
-      image: "/PAVA.jpg",
+      name: "Byopa: Tradtional Headgear of Nyishi Tribe",
+      description:
+        "Traditional Nyishi headgear of Arunachal symbolizing cultural pride and heritage",
+      price: "₹5,000.00", // Converted to INR
+      image: "/Byopa.webp",
     },
     {
       id: 7,
-      name: "Artisanal Jewelry",
-      description: "Handcrafted Silver Necklace",
-      price: "$120.00",
-      image: "/PAVA.jpg",
+      name: "Jaapi: The Headgear That Represents Assam",
+      description:
+        "A traditional Assamese bamboo hat with vibrant patterns, symbolizing cultural pride",
+      price: "₹449.00", // Converted to INR
+      image: "/Jaapi.jpeg",
     },
     {
       id: 8,
-      name: "Artisanal Jewelry",
-      description: "Handcrafted Silver Necklace",
-      price: "$120.00",
-      image: "/PAVA.jpg",
+      name: "Dhaka Topi",
+      description:
+        "The Dhaka Topi is a traditional Nepali hat made from the unique Dhaka fabric, symbolizing cultural pride and heritage",
+      price: "₹349.00", // Converted to INR
+      image: "/DhakaTopi.jpeg",
     },
   ];
 
@@ -105,6 +113,10 @@ const HomePage = () => {
             <a href="/" className="hover:underline text-white">
               My Profile
             </a>
+            {/* Link to Artisans Bio */}
+            <Link to="/artisans-bio" className="hover:underline text-white">
+              Artisans
+            </Link>
             {/* Link to Seller Dashboard */}
             <Link to="/seller-dashboard" className="hover:underline text-white">
               Become a seller
@@ -152,9 +164,12 @@ const HomePage = () => {
               <img
                 src={product.image}
                 alt={product.name}
-                className="w-full h-48 object-cover rounded-md"
+                className="w-full h-48 object-contain rounded-md bg-gray-200"
               />
-              <h3 className="mt-4 text-lg font-bold">{product.name}</h3>
+
+              <h3 className="mt-4 text-lg font-bold text-black">
+                {product.name}
+              </h3>
               <p className="text-gray-500">{product.description}</p>
               <p className="text-green-700 font-bold text-xl">
                 {product.price}
