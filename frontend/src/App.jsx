@@ -9,6 +9,7 @@ import SellerLogin from "./pages/SellerLogin";
 import SellerRegister from "./pages/SellerRegister";
 import BuyerRegister from "./pages/BuyerRegister";
 import RegisterationSuccess from "./pages/RegisterationSuccess";
+import BuyerDashboard from "./pages/BuyerDashboard";
 
 function App() {
   return (
@@ -36,6 +37,9 @@ function App() {
       </Routes>
       <Routes>
         <Route path="/buyer-register" element={<BuyerRegister />} />
+      </Routes>
+      <Routes>
+        <Route path="/buyer-dashboard" element={<BuyerDashboard />} />
       </Routes>
       <Routes>
         <Route

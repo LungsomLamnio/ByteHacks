@@ -1,8 +1,6 @@
 const express = require("express");
-const bcrypt = require("bcryptjs"); // For hashing passwords
-const Buyer = require("../models/buyer"); // Import Buyer model
-const Seller = require("../models/seller"); // Import Seller model
-
+const bcrypt = require("bcryptjs");
+const Buyer = require("../models/buyer"); // Import the Buyer model
 const router = express.Router();
 
 // Buyer Registration
@@ -33,32 +31,35 @@ router.post("/register/buyer", async (req, res) => {
   }
 });
 
-// Seller Registration
-router.post("/register/seller", async (req, res) => {
-  const { username, email, password, storeName } = req.body;
+// Buyer Login
+router.post("/login/buyer", async (req, res) => {
+  const { email, password } = req.body;
 
   try {
-    // Check if the email already exists
-    const existingSeller = await Seller.findOne({ email });
-    if (existingSeller) {
-      return res.status(400).json({ message: "Email already registered" });
+    // Check if buyer exists with the provided email
+    const buyer = await Buyer.findOne({ email });
+    if (!buyer) {
+      return res.status(404).json({ message: "Buyer not found" });
     }
 
-    // Hash the password
-    const hashedPassword = await bcrypt.hash(password, 10);
+    // Compare the provided password with the hashed password
+    const isMatch = await bcrypt.compare(password, buyer.password);
+    if (!isMatch) {
+      return res.status(400).json({ message: "Invalid credentials" });
+    }
 
-    // Create a new seller
-    const newSeller = new Seller({
-      username,
-      email,
-      password: hashedPassword,
-      storeName,
+    // Successfully logged in, send response
+    res.status(200).json({
+      message: "Login successful",
+      buyer: {
+        username: buyer.username,
+        email: buyer.email,
+        _id: buyer._id,
+      },
     });
-
-    await newSeller.save();
-    res.status(201).json({ message: "Seller registered successfully" });
   } catch (error) {
-    res.status(500).json({ message: "Error registering seller", error });
+    console.error(error);
+    res.status(500).json({ message: "Error logging in", error });
   }
 });
 

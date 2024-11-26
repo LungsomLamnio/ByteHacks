@@ -1,12 +1,34 @@
 import React, { useState } from "react";
+import axios from "axios";
+import { useNavigate } from "react-router-dom";
 
 const BuyerLogin = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [error, setError] = useState("");
+  const navigate = useNavigate(); // hook to navigate
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    alert(`Email: ${email}, Password: ${password}`);
+
+    try {
+      // Sending POST request to the backend
+      const response = await axios.post(
+        "http://localhost:5001/api/users/login/buyer",
+        {
+          email,
+          password,
+        }
+      );
+
+      // On successful login, navigate to the dashboard
+      navigate("/buyer-dashboard"); // Redirect to Buyer Dashboard
+    } catch (error) {
+      // Handle error
+      setError(
+        error.response ? error.response.data.message : "Error logging in"
+      );
+    }
   };
 
   return (
@@ -51,6 +73,8 @@ const BuyerLogin = () => {
               required
             />
           </div>
+
+          {error && <p className="text-red-600">{error}</p>}
 
           <button
             type="submit"
