@@ -62,7 +62,7 @@ const BuyerLogin = () => {
         <div className="text-center mt-4">
           <p className="text-sm text-gray-600">
             Don't have an account?{" "}
-            <a href="/register" className="text-blue-600 hover:underline">
+            <a href="/buyer-register" className="text-blue-600 hover:underline">
               Register here
             </a>
           </p>

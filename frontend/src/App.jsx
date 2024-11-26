@@ -5,6 +5,9 @@ import SellerDashBoard from "./pages/SellerDashBoard";
 import ArtisansBio from "./pages/ArtisansBio";
 import LandingPage from "./pages/LandingPage";
 import BuyerLogin from "./pages/BuyerLogin";
+import SellerLogin from "./pages/SellerLogin";
+import SellerRegister from "./pages/SellerRegister";
+import BuyerRegister from "./pages/BuyerRegister";
 
 function App() {
   return (
@@ -23,6 +26,15 @@ function App() {
       </Routes>
       <Routes>
         <Route path="/buyer-login" element={<BuyerLogin />} />
+      </Routes>
+      <Routes>
+        <Route path="/seller-login" element={<SellerLogin />} />
+      </Routes>
+      <Routes>
+        <Route path="/seller-register" element={<SellerRegister />} />
+      </Routes>
+      <Routes>
+        <Route path="/buyer-register" element={<BuyerRegister />} />
       </Routes>
     </Router>
   );
