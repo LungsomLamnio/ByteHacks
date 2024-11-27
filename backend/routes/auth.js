@@ -99,4 +99,37 @@ router.post("/register/seller", async (req, res) => {
   }
 });
 
+// Seller Login
+router.post("/login/seller", async (req, res) => {
+  const { email, password } = req.body;
+
+  try {
+    // Check if seller exists with the provided email
+    const seller = await Seller.findOne({ email });
+    if (!seller) {
+      return res.status(404).json({ message: "Seller not found" });
+    }
+
+    // Compare the provided password with the hashed password
+    const isMatch = await bcrypt.compare(password, seller.password);
+    if (!isMatch) {
+      return res.status(400).json({ message: "Invalid credentials" });
+    }
+
+    // Successfully logged in, send response
+    res.status(200).json({
+      message: "Login successful",
+      seller: {
+        username: seller.username,
+        email: seller.email,
+        storeName: seller.storeName,
+        _id: seller._id,
+      },
+    });
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ message: "Error logging in", error });
+  }
+});
+
 module.exports = router;

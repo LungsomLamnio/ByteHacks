@@ -1,12 +1,34 @@
 import React, { useState } from "react";
+import axios from "axios"; // Make sure axios is installed
+import { useNavigate } from "react-router-dom"; // Import useNavigate hook
 
 const SellerLogin = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [error, setError] = useState(""); // To show error messages
+  const navigate = useNavigate(); // Initialize navigate
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    alert(`Email: ${email}, Password: ${password}`);
+    try {
+      // Make POST request to backend
+      const response = await axios.post(
+        "http://localhost:5001/api/users/login/seller",
+        {
+          email,
+          password,
+        }
+      );
+
+      // Handle success
+      console.log(response.data); // Log user info for now (like token or user data)
+
+      // Redirect to dashboard after successful login
+      navigate("/seller-dashboard"); // Redirect to the dashboard page
+    } catch (err) {
+      // Handle error
+      setError(err.response?.data?.message || "An error occurred.");
+    }
   };
 
   return (
@@ -59,6 +81,9 @@ const SellerLogin = () => {
             Log In
           </button>
         </form>
+
+        {error && <p className="text-red-500 text-center mt-4">{error}</p>}
+
         <div className="text-center mt-4">
           <p className="text-sm text-gray-600">
             Don't have an account?{" "}

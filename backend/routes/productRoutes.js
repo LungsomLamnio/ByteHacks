@@ -1,32 +1,34 @@
 const express = require("express");
 const router = express.Router();
-const Product = require("../models/product"); // Adjust path as necessary
+const Product = require("../models/product");
 
-// POST: Add a new product
-router.post("/products", async (req, res) => {
+router.post("/api/products", async (req, res) => {
+  const { name, description, price, category, stock, seller, images } =
+    req.body;
+
+  // Validate required fields
+  if (!name || !description || !price || !category || !stock || !seller) {
+    return res.status(400).json({ message: "All fields are required." });
+  }
+
   try {
-    const { name, description, price, category, stock, images } = req.body;
-
-    // Validation
-    if (!name || !price || !stock || images?.length === 0) {
-      return res.status(400).json({ error: "Missing required fields" });
-    }
-
-    // Create the new product
-    const product = new Product({
+    const newProduct = new Product({
       name,
       description,
       price,
       category,
       stock,
+      seller,
       images,
     });
 
-    const savedProduct = await product.save();
-    res.status(201).json(savedProduct);
+    const savedProduct = await newProduct.save();
+    res
+      .status(201)
+      .json({ message: "Product added successfully", product: savedProduct });
   } catch (error) {
-    console.error("Error adding product:", error);
-    res.status(500).json({ error: "Internal server error" });
+    console.error("Error saving product:", error);
+    res.status(500).json({ message: "Error saving product", error });
   }
 });
 
