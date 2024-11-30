@@ -12,7 +12,11 @@ const productSchema = new mongoose.Schema(
       ref: "Seller",
       required: true,
     },
-    images: [{ type: String }], // Store image URLs instead of file paths
+    images: {
+      type: String,
+      set: (v) =>
+        v === "" ? "https://cdn.kstdc.co/uploads/2021/08/terracota.jpg" : v,
+    }, // Store image URLs instead of file paths
   },
   { timestamps: true }
 );
