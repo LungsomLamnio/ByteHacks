@@ -7,20 +7,19 @@ const productSchema = new mongoose.Schema(
     price: { type: Number, required: true },
     category: { type: String, required: true },
     stock: { type: Number, required: true },
-    seller: {
-      type: mongoose.Schema.Types.ObjectId,
-      ref: "Seller",
-      required: true,
-    },
     images: {
       type: String,
       set: (v) =>
         v === "" ? "https://cdn.kstdc.co/uploads/2021/08/terracota.jpg" : v,
-    }, // Store image URLs instead of file paths
+    },
+    seller: {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "User",
+      required: true,
+    }, // Added seller field
   },
   { timestamps: true }
 );
 
 const Product = mongoose.model("Product", productSchema);
-
 module.exports = Product;

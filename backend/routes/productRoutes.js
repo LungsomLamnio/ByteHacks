@@ -1,35 +1,64 @@
 const express = require("express");
-const router = express.Router();
-const Product = require("../models/product");
+const cors = require("cors");
+const mongoose = require("mongoose");
+require("dotenv").config(); // Load environment variables
 
-router.post("/api/products", async (req, res) => {
-  const { name, description, price, category, stock, seller, images } =
-    req.body;
+const productRoutes = require("./routes/productRoutes");
+const buyerRoutes = require("./routes/buyerRoutes");
+const authRoutes = require("./routes/auth");
+const sellerRoutes = require("./routes/auth");
 
-  // Validate required fields
-  if (!name || !description || !price || !category || !stock || !seller) {
-    return res.status(400).json({ message: "All fields are required." });
-  }
+const app = express();
 
+// Middleware
+app.use(cors());
+app.use(express.json());
+
+// Routes
+app.use("/api/products", productRoutes);
+app.use("/api/users/buyers", buyerRoutes);
+app.use("/api/users/auth", authRoutes);
+app.use("/api/users/sellers", sellerRoutes);
+
+// MongoDB Connection
+const connectDB = async () => {
   try {
-    const newProduct = new Product({
-      name,
-      description,
-      price,
-      category,
-      stock,
-      seller,
-      images,
+    const uri = process.env.MONGO_URI;
+    if (!uri) {
+      console.error("MONGO_URI is not defined in .env file");
+      process.exit(1);
+    }
+    await mongoose.connect(uri, {
+      useNewUrlParser: true,
+      useUnifiedTopology: true,
     });
-
-    const savedProduct = await newProduct.save();
-    res
-      .status(201)
-      .json({ message: "Product added successfully", product: savedProduct });
+    console.log("Connected to MongoDB");
   } catch (error) {
-    console.error("Error saving product:", error);
-    res.status(500).json({ message: "Error saving product", error });
+    console.error("Failed to connect to MongoDB", error);
+    process.exit(1);
   }
+};
+
+connectDB();
+
+app.get("/", (req, res) => {
+  res.json({
+    message: "Welcome to the E-commerce API!",
+    status: "API is running",
+    routes: [
+      { path: "/api/products", description: "Product-related endpoints" },
+      { path: "/api/users", description: "User registration endpoints" },
+    ],
+  });
 });
 
-module.exports = router;
+process.on("SIGINT", async () => {
+  console.log("Closing MongoDB connection...");
+  await mongoose.disconnect();
+  process.exit(0);
+});
+
+const PORT = process.env.PORT || 5001;
+app.listen(PORT, () => {
+  console.log(`Backend running on http://localhost:${PORT}`);
+});
